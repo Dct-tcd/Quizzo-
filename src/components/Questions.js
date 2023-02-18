@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import Options from './Options';
 import Result from './Result';
+import ReactDOM from "react-dom" 
 
 export default function Questions() {
   const clicker = () =>{
-    
+    const root = ReactDOM.createRoot(
+      document.getElementById('root')
+    );
+    const element = <Result score={score}/>;
+    root.render(element);
   } 
   const [response, setresponse] = useState(0);
   const [score , setscore]   = useState(0);
@@ -17,8 +22,8 @@ export default function Questions() {
       <Options  response={response} setresponse={setresponse} score={score} setscore={setscore} question="Who Won the first Gold Medal for India at the Olympics ?" option2="Abhinav bindra" option1="Neeraj Chopra" option3="Sakshi malik" ans="2"/>
       <Options  response={response} setresponse={setresponse} score={score} setscore={setscore} question="With which country india share longest border ?" option1="China" option2="Pakistan" option3="Bangladesh" ans="3"/>
       </div>
-      {clicker}
-      {response==4 ? <Result score={score} /> : ''}
+      
+      {response==4 ? clicker()  : ''}
     </div>
   )
 }
